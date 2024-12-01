@@ -1,0 +1,12 @@
+# Build results
+bin/
+obj/
+
+# Rider and Visual Studio settings
+.idea/
+.vs/
+*.suo
+*.user
+
+# Packages (se existir)
+packages/
