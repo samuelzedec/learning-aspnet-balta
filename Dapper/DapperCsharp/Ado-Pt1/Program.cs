@@ -5,7 +5,8 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        const string connectionString = "Server=localhost,9090;Database=balta;User ID=sa;Password=;1q2w3e4r@#$";
+        const string connectionString = 
+            "Server=localhost,9090;Database=balta;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True";
         //Microsoft.Data.SqlClient pacote para acessar o banco de dados baixado via (NuGet)
         
         //Em vez de usar dessa formar, podemos usar o using para garantir que a conexão será encerrada

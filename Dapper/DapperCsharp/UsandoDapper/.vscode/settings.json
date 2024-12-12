@@ -1,0 +1,7 @@
+{
+    "C_Cpp.vcFormat.newLine.beforeCatch": true,
+    "C_Cpp.vcFormat.newLine.beforeElse": true,
+    "C_Cpp.vcFormat.newLine.beforeWhileInDoWhile": true,
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
+    "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyFunction": true
+}
