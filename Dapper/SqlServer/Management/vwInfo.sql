@@ -9,3 +9,5 @@ CREATE OR ALTER VIEW [vwInfo] AS
     INNER JOIN [Course] ON [RoomCourse].[CourseId] = [Course].[Id]
     INNER JOIN [Room] ON [RoomCourse].[RoomId] = [Room].[Id]
 
+
+
