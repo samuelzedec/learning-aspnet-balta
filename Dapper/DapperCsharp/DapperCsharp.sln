@@ -1,10 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ado-Pt1", "Ado-Pt1\Ado-Pt1.csproj", "{33E9E02E-60DB-4575-9EBE-5FB0F6ED2296}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ado_Pt2", "Ado_Pt2\Ado_Pt2.csproj", "{87379C39-15EC-46EA-AA6A-C64FCFAD4365}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsandoDapper", "UsandoDapper\UsandoDapper.csproj", "{7F50DF6F-24F7-41E6-9875-6BEA0B69A351}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "..\Bank\Bank.csproj", "{F70C0098-9D5E-4DEA-82C3-7DF21A911D62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +27,12 @@ Global
 		{7F50DF6F-24F7-41E6-9875-6BEA0B69A351}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F50DF6F-24F7-41E6-9875-6BEA0B69A351}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F50DF6F-24F7-41E6-9875-6BEA0B69A351}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F70C0098-9D5E-4DEA-82C3-7DF21A911D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F70C0098-9D5E-4DEA-82C3-7DF21A911D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F70C0098-9D5E-4DEA-82C3-7DF21A911D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F70C0098-9D5E-4DEA-82C3-7DF21A911D62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
