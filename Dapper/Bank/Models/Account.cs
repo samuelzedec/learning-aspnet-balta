@@ -3,13 +3,14 @@ using Dapper.Contrib.Extensions;
 namespace Bank.Models;
 
 [Table("[Account]")]
-public class Account : IRequiredField
+public class Account : IRequiredField, IUserIdRequired
 {
 	public Account()
 		=> Transactions = new List<Transaction>();
 		
-	[Key]
+	[ExplicitKey]
 	public int Id { get; set; }
+	[ExplicitKey]
 	public int UserId { get; set; }
 	public decimal Balance { get; set; }
 	public DateTime Opening { get; set; }
