@@ -1,21 +1,24 @@
 ﻿using Microsoft.Data.SqlClient;
 using Bank.Shared;
+using Bank.Screens.RegisterScreen;
+using Bank.Screens.AccessScreen;
 namespace Bank;
 
 internal class Program
 {
 	public static readonly string ConnectionString = 
-		@"Server=localhost,9090;Database=Blog;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True";
+		@"Server=localhost,9090;Database=Bank;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True";
 	private static void Main(string[] args)
 	{
 		using (AppSettings.Connection = new SqlConnection(ConnectionString))
 		{
 			AppSettings.Connection.Open();
 			Load();
+
 		}
 	}
 
-	private static void Load()
+	public static void Load()
 	{
 		Console.Clear();
 		Console.WriteLine("\u001b[32mBem-vindo ao Banco Luck\u001b[0m");
@@ -36,8 +39,10 @@ internal class Program
 		switch(value) 
 		{
 			case 1:
+				LockScreen.Load();
 				break;
 			case 2:
+				MenuRegisterScreen.Load();
 				break;
 			case 3:
 				Closing();

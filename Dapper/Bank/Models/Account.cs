@@ -3,7 +3,7 @@ using Dapper.Contrib.Extensions;
 namespace Bank.Models;
 
 [Table("[Account]")]
-public class Account : IRequiredField, IUserIdRequired
+public class Account : IRequiredField
 {
 	public Account()
 		=> Transactions = new List<Transaction>();
