@@ -15,7 +15,7 @@ public class UserRepository : Repository<User>
 		string password) 
 	{
 		var procedure = "[spInsertUser]";
-		var userId = AppSettings.Connection?.ExecuteScalar<int>(
+		return AppSettings.Connection?.ExecuteScalar<int>(
 			procedure,
 			new { 
 				FullName = fullName,
@@ -27,7 +27,7 @@ public class UserRepository : Repository<User>
 			},
 			commandType: CommandType.StoredProcedure
 		);
-		return userId;
+		
 	}
 	
 	public User? LookingForUser(string mail) 
