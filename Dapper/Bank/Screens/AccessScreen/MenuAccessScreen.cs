@@ -1,4 +1,5 @@
 using Bank.Models;
+using Bank.Screens.AccountScreen;
 using Bank.Screens.ActionsScreen;
 namespace Bank.Screens.AccessScreen;
 public static class MenuAccessScreen
@@ -47,6 +48,7 @@ public static class MenuAccessScreen
 				UserScreen.Read(User);
 				break;
 			case 2:
+				CurrentAccountScreen.Load(User);
 				break;
 			case 3:
 				break;
