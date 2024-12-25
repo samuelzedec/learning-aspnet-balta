@@ -26,7 +26,9 @@ public static class LockScreen
 		if(user?.Password == password) {
 			Console.WriteLine("\u001b[32mLogin feito com sucesso\u001b[0m");
 			Console.ReadKey();
-			MenuAccessScreen.Load(user);
+			
+			MenuAccessScreen.User = user;
+			MenuAccessScreen.Load();
 		} 
 		else 
 		{

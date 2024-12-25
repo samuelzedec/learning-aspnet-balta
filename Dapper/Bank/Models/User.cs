@@ -9,6 +9,7 @@ public class User : IRequiredField
 	{
 		Accounts = new List<Account>();
 		DateOfBirth = new DateTime();
+		Address = new Address();
 	}	
 	
 	public int Id { get; set; }
@@ -21,4 +22,7 @@ public class User : IRequiredField
 
 	[Write(false)]
 	public List<Account>? Accounts { get; set; }
+	
+	[Write(false)]
+	public Address Address { get; set; }
 }

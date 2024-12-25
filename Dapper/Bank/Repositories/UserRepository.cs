@@ -2,6 +2,7 @@ using System.Data;
 using Bank.Models;
 using Bank.Shared;
 using Dapper;
+using Dapper.Contrib.Extensions;
 namespace Bank.Repositories;
 
 public class UserRepository : Repository<User>
@@ -44,5 +45,33 @@ public class UserRepository : Repository<User>
 			sql,
 			new { email = mail }
 		);
+	}
+	
+	public User? ReturningUserInformation(int? id) 
+	{
+		var sql = @"
+		SELECT TOP 1
+			[User].*,
+			[Address].*
+		FROM
+			[User]
+		INNER JOIN [Address] ON [User].[Id] = [Address].[UserId]
+		WHERE
+			[User].[id] = @Id
+		";
+		
+		var info = AppSettings.Connection?.Query<User, Address, User>(
+			sql,
+			(user, address) =>
+			{
+				user.Address = new Address();
+				user.Address = address;
+				return user;
+			},
+			new { Id = id },
+			splitOn: "UserId"
+		).FirstOrDefault();
+
+		return info;
 	}
 }

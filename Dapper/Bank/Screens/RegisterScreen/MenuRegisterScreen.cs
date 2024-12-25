@@ -1,6 +1,8 @@
 using Bank.Models;
 using Bank.Repositories;
+using Bank.Services;
 using Bank.Shared;
+using Bank.Shared.Enums;
 namespace Bank.Screens.RegisterScreen;
 
 public static class MenuRegisterScreen
@@ -56,6 +58,7 @@ public static class MenuRegisterScreen
 		var address = new Address();
 		var addressRepository = new Repository<Address>();
 		var validator = new ValidatedValues();
+		var userActions = new UserActions();
 
 		address.UserId = id;
 		address.Road = validator.StringValidation("\u001b[32mNome da rua: \u001b[0m");
@@ -69,16 +72,20 @@ public static class MenuRegisterScreen
 		try 
 		{
 			addressRepository.Create(address);
-			Console.Write("\u001b[32mConta criada com sucesso!!\u001b[0m");
+			userActions.OpeningAccount(id);
+			Console.WriteLine("\u001b[32mConta criada com sucesso!!\u001b[0m");
+			Console.WriteLine("!! Pressione enter para continuar !!");
 			Console.ReadKey();
 			Program.Load();
 		} catch(Exception ex) 
 		{
 			Console.WriteLine($"\u001b[31mOcorreu um erro inesperado: {ex.Message}\u001b[0m");
 			Console.WriteLine("Digite novamente as informações de endereço!");
+			Console.WriteLine("!! Pressione enter para continuar !!");
 			Console.ReadKey();
 			AddressData(id);
 		}
 	}
 	
+
 }

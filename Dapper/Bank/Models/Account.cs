@@ -11,7 +11,7 @@ public class Account : IRequiredField
 	[ExplicitKey]
 	public int Id { get; set; }
 	[ExplicitKey]
-	public int UserId { get; set; }
+	public int? UserId { get; set; }
 	public decimal Balance { get; set; }
 	public DateTime Opening { get; set; }
 	public string? AccountType { get; set; }

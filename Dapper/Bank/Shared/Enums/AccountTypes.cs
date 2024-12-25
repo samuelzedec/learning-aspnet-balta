@@ -1,7 +1,7 @@
 namespace Bank.Shared.Enums;
 public enum AccountTypes
 {
-	CurrentAccount,
+	CurrentAccount = 1,
 	SavingsAccount,
 	InvestmentAccount,
 }
