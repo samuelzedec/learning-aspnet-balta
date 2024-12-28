@@ -1,0 +1,37 @@
+public static class Program 
+{
+	public static void Main(string[] args) 
+	{
+		var posts = context.Posts;
+		var posts2 = context.Posts?.AsNoTracking(); 
+		//.AsNoTracking(): Desabilita o rastreamento de entidades, usado bastante quando vamos fazer somente leitura
+
+		/* ====================================================================================
+		* # Tracking # = Habilita o rastreamento de entidades, ou seja, permite que o Entity 
+		* Framework Core monitore as instâncias de dados recuperadas do banco de dados, usando 
+		* informações adicionais (metadados). Esse rastreamento permite que o EF Core execute 
+		* operações de atualização (Update), exclusão (Delete) e inserção (Insert) no banco 
+		* de dados com base nas mudanças feitas nas entidades durante o ciclo de vida da aplicação.
+		* ==================================================================================== */
+	}
+}
+
+public static class Program 
+{
+	public static async Task Main(string[] args) 
+	{
+		var context = new BlogDataContext();
+		var list = await GetPosts(context);
+		/* ===================================================================================
+		 * Mesmo que o await faça o threading principal esperar a conclusão dessa tarefa
+		 * essa tarefa não sobrecarrega o threading principal, porque está sendo feita em outro
+		 * threading, fazendo que quando ela for concluída o threading principal foque em outras
+		 * tarefas 
+		 * =================================================================================== */
+		
+		Console.WriteLine("Teste");
+	}
+
+	public static async Task<List<Post>> GetPosts(BlogDataContext context)
+		=> await context.Posts.ToListAsync(); 
+}
