@@ -1,9 +1,9 @@
-public static class Program 
+public static class Program
 {
-	public static void Main(string[] args) 
+	public static void Main(string[] args)
 	{
 		var posts = context.Posts;
-		var posts2 = context.Posts?.AsNoTracking(); 
+		var posts2 = context.Posts?.AsNoTracking();
 		//.AsNoTracking(): Desabilita o rastreamento de entidades, usado bastante quando vamos fazer somente leitura
 
 		/* ====================================================================================
@@ -16,9 +16,9 @@ public static class Program
 	}
 }
 
-public static class Program 
+public static class Program
 {
-	public static async Task Main(string[] args) 
+	public static async Task Main(string[] args)
 	{
 		var context = new BlogDataContext();
 		var list = await GetPosts(context);
@@ -28,10 +28,59 @@ public static class Program
 		 * threading, fazendo que quando ela for concluída o threading principal foque em outras
 		 * tarefas 
 		 * =================================================================================== */
-		
+
 		Console.WriteLine("Teste");
 	}
 
 	public static async Task<List<Post>> GetPosts(BlogDataContext context)
-		=> await context.Posts.ToListAsync(); 
+		=> await context.Posts.ToListAsync();
+}
+
+public static class Program
+{
+	public static async Task Main(string[] args)
+	{
+		/* =============================================================================================
+		* Lazy Loading: Quando você marca uma propriedade de navegação como `virtual`, 
+		* o Entity Framework Core não carrega os dados relacionados imediatamente. 
+		* Ao invés disso, ele **carrega** os dados **somente quando a propriedade for acessada** 
+		* pela primeira vez, ou seja, ele executa um segundo SELECT para trazer os dados relacionados.
+		* ============================================================================================= */
+
+		/*
+		 * Eager Loading: só irá trazer subconjuntos quando usarmos o .Include(x => u.Prop);
+		 * Uma boa forma tbm é usar o .Select() para trazer somente o que precisamos
+		 */
+		var context = new BlogDataContext();
+
+		Console.WriteLine("Teste");
+	}
+}
+
+public static class Program
+{
+	public static async Task Main(string[] args)
+	{
+		var context = new BlogDataContext();
+		var posts = GetPosts(context, 0, 25);
+		var posts2 = GetPosts(context, 25, 25);
+		var posts3 = GetPosts(context, 50, 25);
+		var posts4 = GetPosts(context, 75, 25);
+		Console.WriteLine("Teste");
+	}
+
+	public static List<Post>? GetPosts(BlogDataContext context, int skip = 0, int take = 25)
+	{
+		var posts = context
+					.Posts
+					?.AsNoTracking()
+					.Skip(skip)
+					.Take(take)
+					.ToList();
+		return posts;
+		/*
+		 * Take(): Pega um determinado número de elementos
+		 * Skip(): Pula um determiando número de elementos 
+	 	 */
+	}
 }
