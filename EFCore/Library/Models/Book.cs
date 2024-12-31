@@ -1,9 +1,10 @@
 namespace Library.Models;
 public class Book
 {
-	public required int Id { get; set; }
-	public required string Title { get; set; }
-	public required int PublicationYear { get; set; }
-	public Author? Author { get; set; }
-	public List<Gender> Gender { get; set; } = new List<Gender>();
+	public int Id { get; set; }
+	public string Title { get; set; } = string.Empty;
+	public int PublicationYear { get; set; }
+	public Author Author { get; set; } = new Author();
+	public List<Client> Clients { get; set; } = new List<Client>(); 
+	public List<Gender> Genders { get; set; } = new List<Gender>();
 }

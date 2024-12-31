@@ -1,7 +1,7 @@
 namespace Library.Models;
 public class Gender
 {
-	public required int Id { get; set; }
-	public required string Name { get; set; }
+	public int Id { get; set; }
+	public string Name { get; set; } = string.Empty;
 	public List<Book> Books { get; set; } = new List<Book>();
 }
