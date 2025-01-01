@@ -56,7 +56,7 @@ public class AuthorMap : IEntityTypeConfiguration<Author>
 		builder
 			.Property(a => a.Biography)
 			.HasColumnName("Biography")
-			.HasColumnType("NVARCHAR")
+			.HasColumnType("NVARCHAR(MAX)")
 			.HasDefaultValue("## Não há registro informado sobre sua biografia ##");
 
 		// Setting the relationship between Author and Book

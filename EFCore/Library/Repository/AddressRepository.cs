@@ -5,9 +5,11 @@ namespace Library.Repository;
 
 public class AddressRepository
 {
+	private readonly LibraryDataContext Context;
+	public AddressRepository(LibraryDataContext context)
+		=> Context = context;
+		
 	public required Address Address { get; set; }
-	public required LibraryDataContext Context { get; set; }
-
 	public async Task<bool> Update(int clientId, Address model)
 	{
 		var address = await Context.Addresses
@@ -23,7 +25,6 @@ public class AddressRepository
 
 		Context.Update(address);
 		return await Context.SaveChangesAsync() > 0;
-		
 	}
 	
 	public async Task<Address> Get(int clientId)

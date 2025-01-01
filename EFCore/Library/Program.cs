@@ -6,30 +6,34 @@ Console.WriteLine("Hello, World!");
 var context = new LibraryDataContext();
 
 
-var client = new Client
+var book1 = new Book
 {
-	Name = "José Gabriel",
-	BirthDate = new DateTime(2006, 10, 26),
-	Email = "jose@email.com",
-	Phone = "(68) 98686-9191",
+	Title = "Livro Testing 1",
+	PublicationYear = 2022
 };
 
-var address = new Address
+var book2 = new Book
 {
-	Road = "Esquina Longe",
-	Number = 75,
-	Neighborhood = "Logo Ali Perto Testing",
-	City = "Manacapuru",
-	State = "Amazonas",
-	ZipCode = "61093-056",
+	Title = "Livro Testing 2",
+	PublicationYear = 2021
+};
+var list = new List<Book>
+{
+	book1, book2
 };
 
-var repository = new ClientRepository 
+var author = new Author
 {
-	Context = context,
-	Client = client,
-	Address = address
+	Name = "Author Testing",
+	Age = 49,
+	BirthDate = new DateTime(1984, 10, 20),
+	Nationality = "Brasileiro",
+	Biography = "Author testadno a bio aqui!",
+	Books = list
 };
-
+var repository = new AuthorRepository(context) 
+{
+	Author = author	
+};
 var result = await repository.Create();
 Console.WriteLine($"Tudo certo! {result}");

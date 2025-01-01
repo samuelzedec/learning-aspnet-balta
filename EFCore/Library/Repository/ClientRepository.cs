@@ -5,9 +5,13 @@ namespace Library.Repository;
 
 public class ClientRepository : IRepository<Client>
 {
-	public required LibraryDataContext Context { get; set; }
-	public required Client Client { get; set; }
-	public required Address Address { get; set; }
+	private readonly LibraryDataContext Context;
+	public ClientRepository(LibraryDataContext context)
+		=> Context = context;
+	
+	public Client Client { get; set; } = new Client();
+	public Address Address { get; set; } = new Address();
+	
 	public async Task<bool> Create()
 	{
 		Address.Client = Client;

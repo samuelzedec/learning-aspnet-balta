@@ -15,7 +15,7 @@ CREATE TABLE [Author] (
     [Age] TINYINT NOT NULL,
     [BirthDate] DATE NOT NULL,
     [Nationality] VARCHAR(100) NOT NULL,
-    [Biography] NVARCHAR NOT NULL DEFAULT N'## Não há registro informado sobre sua biografia ##',
+    [Biography] NVARCHAR(MAX) NOT NULL DEFAULT N'## Não há registro informado sobre sua biografia ##',
     CONSTRAINT [PK_Author] PRIMARY KEY ([Id])
 );
 
