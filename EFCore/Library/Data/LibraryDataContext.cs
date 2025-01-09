@@ -18,7 +18,9 @@ public class LibraryDataContext : DbContext
 
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer("Server=localhost,9090;Database=Library;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True");
+		optionsBuilder.UseSqlServer(
+			"Server=host.docker.internal,1433;Database=Library;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=True"
+		);
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

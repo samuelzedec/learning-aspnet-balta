@@ -1,0 +1,76 @@
+using Microsoft.AspNetCore.Mvc;
+using Todo.Data;
+using Todo.Models;
+namespace Todo.Controllers;
+
+[ApiController] // Ao usar essa notação estamos dizendo que é uma API e irá so retornar JSON
+[Route("/home")] // Aqui estamos dizendo que as rotas dos métodos só vem após esse pré-texto
+public class HomeController : ControllerBase // Para API a classe ControllerBase tem mais opções de métodos do que a class Controller
+{
+	[HttpGet] // Aqui estamos especificando que esse método será do tipo GET
+	[Route("")] // Aqui estamos criando a rota para esse GET
+	//Caso não queira usar o Route o HttpGet aceita parâmetro da rota, EX: [HttpGet("/")]
+	public List<TodoModel> Get(
+		[FromServices] AppDataContext context // [FromServices] fará com que essa instância seja a que foi adiconada ao serviços
+	) // Todo método público de um Controller é chamado de Action
+	{
+		return [.. context.Todos]; // O operador de inteervalo faz com que a lista seja desestruturada podendo virar uma lista ou array
+		/*Para criar rota com sub-rotas devemos tirar há barra lateral, pq se não elas ficam como se fosse estáticas*/
+	}
+	
+	[HttpGet("{id:int}")] // Definindo um parâmetro na rota
+	public TodoModel? GetById(
+		[FromServices] AppDataContext context,
+		[FromRoute] int id // [FromRoute] Quer dizer que o valor irá vir pela rota
+	) 
+	{
+		return context.Todos.FirstOrDefault(x => x.Id == id);
+	}
+	
+	[HttpPost("")]
+	public TodoModel Post(
+		[FromBody] TodoModel todo, // [FromBody] que dizer que esse todo virá do corpo da requisição (nesse caso do postman)  
+		[FromServices] AppDataContext context
+	) 
+	{
+		context.Todos.Add(todo);
+		context.SaveChanges();
+		return todo;
+	}
+	
+	[HttpPut("{id:int}")]
+	public bool Put(
+		[FromRoute] int id,
+		[FromBody] TodoModel todo, // [FromBody] que dizer que esse todo virá do corpo da requisição (nesse caso do postman)  
+		[FromServices] AppDataContext context
+	) 
+	{
+		var item = context.Todos
+			.FirstOrDefault(t => t.Id == id)
+			?? throw new ArgumentNullException("Todo não existente!");
+
+		item.Title = todo.Title;
+		item.Done = todo.Done;
+
+		context.Update(item);
+		context.SaveChanges();
+		return true;
+	}
+	
+	[HttpDelete("{id:int}")]
+	public bool Delete(
+		[FromRoute] int id,
+		[FromServices] AppDataContext context
+	) 
+	{
+		var item = context.Todos
+			.FirstOrDefault(t => t.Id == id)
+			?? throw new ArgumentNullException("Todo não existente!");
+
+		context.Todos.Remove(item);
+			
+		context.SaveChanges();
+		return true;
+	}
+
+}

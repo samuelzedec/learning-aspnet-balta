@@ -21,7 +21,7 @@ namespace Library.Migrations
                     Age = table.Column<byte>(type: "TINYINT", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "DATE", nullable: false),
                     Nationality = table.Column<string>(type: "VARCHAR(100)", maxLength: 100, nullable: false),
-                    Biography = table.Column<string>(type: "NVARCHAR", nullable: false, defaultValue: "## Não há registro informado sobre sua biografia ##")
+                    Biography = table.Column<string>(type: "NVARCHAR(MAX)", nullable: false, defaultValue: "## Não há registro informado sobre sua biografia ##")
                 },
                 constraints: table =>
                 {
@@ -64,7 +64,7 @@ namespace Library.Migrations
                     Id = table.Column<int>(type: "INT", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "NVARCHAR(100)", maxLength: 100, nullable: false),
-                    PublicationYear = table.Column<short>(type: "SMALLINT", nullable: false, defaultValue: (short)2024),
+                    PublicationYear = table.Column<short>(type: "SMALLINT", nullable: false, defaultValue: (short)2025),
                     AuthorId = table.Column<int>(type: "INT", nullable: false)
                 },
                 constraints: table =>

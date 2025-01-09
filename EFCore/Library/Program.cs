@@ -17,6 +17,7 @@ var book2 = new Book
 	Title = "Livro Testing 2",
 	PublicationYear = 2021
 };
+
 var list = new List<Book>
 {
 	book1, book2

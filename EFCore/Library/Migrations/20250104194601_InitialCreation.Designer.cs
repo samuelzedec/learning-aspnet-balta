@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDataContext))]
-    [Migration("20250101160820_AdjustInAuthorTable")]
-    partial class AdjustInAuthorTable
+    [Migration("20250104194601_InitialCreation")]
+    partial class InitialCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -37,7 +37,7 @@ CREATE TABLE [Gender] (
 CREATE TABLE [Book] (
     [Id] INT NOT NULL IDENTITY,
     [Title] NVARCHAR(100) NOT NULL,
-    [PublicationYear] SMALLINT NOT NULL DEFAULT CAST(2024 AS SMALLINT),
+    [PublicationYear] SMALLINT NOT NULL DEFAULT CAST(2025 AS SMALLINT),
     [AuthorId] INT NOT NULL,
     CONSTRAINT [PK_Book] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_Book_AuthorId] FOREIGN KEY ([AuthorId]) REFERENCES [Author] ([Id]) ON DELETE CASCADE
@@ -89,7 +89,7 @@ CREATE UNIQUE INDEX [IX_Gender_Name] ON [Gender] ([Name]);
 CREATE INDEX [IX_GenderBook_GenderId] ON [GenderBook] ([GenderId]);
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20241231204731_InitialCreation', N'9.0.0');
+VALUES (N'20250104194601_InitialCreation', N'9.0.0');
 
 COMMIT;
 GO

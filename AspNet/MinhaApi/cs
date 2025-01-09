@@ -1,0 +1,24 @@
+var builder = WebApplication.CreateBuilder(args);
+/* =================================================================================
+ * WebApplication:
+ * Uma classe fornecida pelo ASP.NET Core que simplifica a criação de aplicativos 
+ * web modernos. Faz parte do modelo minimalista introduzido a partir do .NET 6.
+ * 
+ * CreateBuilder(args):
+ * Um método estático que cria e configura uma instância de WebApplicationBuilder. 
+ * Este objeto é responsável por:
+ *
+ * - Configurar o host da aplicação (o ambiente em que o app será executado, como Kestrel).
+ * 
+ * - Adicionar serviços à Injeção de Dependência (Dependency Injection).
+ * 
+ * - Carregar configurações do aplicativo a partir de fontes como arquivos appsettings.json, 
+ *   variáveis de ambiente, argumentos da linha de comando e outros.
+ * ================================================================================= */
+
+var app = builder.Build(); // Aqui já é onde realmente a aplicação é construída para ser executada
+
+app.MapGet("/", () => "Hello World!"); 
+// ^ Faz o mapeamento da rota, o primeiro parâmetro é a rota para ser acessada e o segundo oq será retornado (isso é um EndPoint)
+
+app.Run(); // Faz com que a aplicação construída seja rodada, assim que o comando dotnet run for executado
