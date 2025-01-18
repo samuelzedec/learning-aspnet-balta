@@ -1,6 +1,11 @@
-﻿namespace WebBlog.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+namespace WebBlog.Controllers;
 
-public class HomeController
+[ApiController]
+[Route("/")]
+public class HomeController : ControllerBase
 {
-    
+    [HttpGet("")]
+    public IActionResult Get()
+        => Ok(); //health-check
 }

@@ -83,7 +83,7 @@ namespace WebBlog.Migrations
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Slug = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2025, 1, 9, 2, 15, 31, 791, DateTimeKind.Utc).AddTicks(2852)),
+                    LastUpdateDate = table.Column<DateTime>(type: "SMALLDATETIME", nullable: false, defaultValue: new DateTime(2025, 1, 9, 2, 30, 6, 392, DateTimeKind.Utc).AddTicks(1045)),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     AuthorId = table.Column<int>(type: "int", nullable: true)
                 },

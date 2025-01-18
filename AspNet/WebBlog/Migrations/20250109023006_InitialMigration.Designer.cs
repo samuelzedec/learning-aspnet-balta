@@ -12,7 +12,7 @@ using WebBlog.Data;
 namespace WebBlog.Migrations
 {
     [DbContext(typeof(BlogDataContext))]
-    [Migration("20250109021532_InitialMigration")]
+    [Migration("20250109023006_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -106,7 +106,7 @@ namespace WebBlog.Migrations
                     b.Property<DateTime>("LastUpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2025, 1, 9, 2, 15, 31, 791, DateTimeKind.Utc).AddTicks(2852))
+                        .HasDefaultValue(new DateTime(2025, 1, 9, 2, 30, 6, 392, DateTimeKind.Utc).AddTicks(1045))
                         .HasColumnName("LastUpdateDate");
 
                     b.Property<string>("Slug")

@@ -1,7 +1,12 @@
-﻿namespace WebBlog.ViewModels;
+﻿using System.ComponentModel.DataAnnotations;
+namespace WebBlog.ViewModels;
 
-public class CreateCategoryViewModel
+public class EditorCategoryViewModel
 {
-    public required string Name { get; set; }
-    public required string Slug { get; set; }
+    [Required(ErrorMessage = "Nome é requirido")]
+    [StringLength(40, MinimumLength = 4, ErrorMessage = "Nome deve ter entre 3 e 40 caracteres")]
+    public string Name { get; set; } = null!;
+
+    [Required(ErrorMessage = "Slug é requirido")]
+    public string Slug { get; set; } = null!;
 }
