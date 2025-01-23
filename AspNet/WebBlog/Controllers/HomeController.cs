@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebBlog.Attributes;
+
 namespace WebBlog.Controllers;
 
 [ApiController]
@@ -6,6 +8,9 @@ namespace WebBlog.Controllers;
 public class HomeController : ControllerBase
 {
     [HttpGet("")]
+    [ApiKey]
     public IActionResult Get()
-        => Ok(); //health-check
+    {
+        return Ok(); //health-check
+    }
 }

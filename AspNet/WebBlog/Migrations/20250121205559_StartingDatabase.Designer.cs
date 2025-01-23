@@ -12,8 +12,8 @@ using WebBlog.Data;
 namespace WebBlog.Migrations
 {
     [DbContext(typeof(BlogDataContext))]
-    [Migration("20250109023006_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20250121205559_StartingDatabase")]
+    partial class StartingDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,7 +106,7 @@ namespace WebBlog.Migrations
                     b.Property<DateTime>("LastUpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("SMALLDATETIME")
-                        .HasDefaultValue(new DateTime(2025, 1, 9, 2, 30, 6, 392, DateTimeKind.Utc).AddTicks(1045))
+                        .HasDefaultValue(new DateTime(2025, 1, 21, 20, 55, 58, 229, DateTimeKind.Utc).AddTicks(4278))
                         .HasColumnName("LastUpdateDate");
 
                     b.Property<string>("Slug")
