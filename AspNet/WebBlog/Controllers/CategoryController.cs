@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using WebBlog.Data;
 using WebBlog.Extensions;
 using WebBlog.Models;
 using WebBlog.ViewModels;
+using WebBlog.ViewModels.Categories;
 
 namespace WebBlog.Controllers;
 
@@ -12,23 +14,30 @@ public class CategoryController : ControllerBase
 {
     [HttpGet("v1/categories")]
     public async Task<IActionResult> GetAsync(
+        [FromServices] IMemoryCache cache,
         [FromServices] BlogDataContext context)
     {
-        User.IsInRole("admin");
         try
         {
-            var categories = await context
-                .Categories
-                .AsNoTracking()
-                .ToListAsync();
-        
-            return Ok(new ResultViewModel<List<Category>>(categories));
+            /* =========================================
+             * primeiro parâmetro: nome do cache
+             * segundo parâmetro: passando o tempo e o valor para o cache
+             * ========================================= */
+            var categories = cache.GetOrCreate("CategoriesCache", entry =>
+            {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1); // Tempo de expiração
+                return GetCategories(context);
+            });
+            return Ok(new ResultViewModel<List<Category>>(categories ?? []));
         }        
         catch
         {
             return StatusCode(500, new ResultViewModel<List<Category>>("05X04 - Falha interna no servidor"));
         }
     }
+
+    private List<Category> GetCategories(BlogDataContext context)
+        => context.Categories.ToList();
     
     [HttpGet("v1/categories/{id:int}")]
     public async Task<IActionResult> GetByIdAsync(
