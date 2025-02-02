@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebBlog;
 using WebBlog.Data;
@@ -17,11 +18,19 @@ ConfigureServices(builder);
 var app = builder.Build();
 LoadConfiguration(app);
 
+app.UseHttpsRedirection(); // Fará com que ao usar a nossa url irá ser redirecionando para https em vez de http
 app.UseAuthentication(); // Faz com que o asp.net necessite de autorização
 app.UseAuthorization(); // ativa para o asp.net usar autenticação
 app.UseResponseCompression(); // Para ativar o uso da compressão
 app.MapControllers();
 app.UseStaticFiles(); // Para usar com arquivos estáticos, irá sempre procurar a pasta wwwroot
+
+if (app.Environment.IsDevelopment()) //  Irá retornar um boolean dizendo se realmente estamos em desenvolvimento
+{
+    app.UseSwagger(); // estamos habilitando o swagger 
+    app.UseSwaggerUI(); // estmoas habilitando a interface do swagger
+}
+
 app.Run("https://localhost:8000/");
 
 void LoadConfiguration(WebApplication app)
@@ -71,6 +80,8 @@ void ConfigureAuthentication(WebApplicationBuilder builder)
 
 void ConfigureMvc(WebApplicationBuilder builder)
 {
+    builder.Services.AddEndpointsApiExplorer(); // Habilita a descoberta e mapeamento dos endpoints da API para o Swagger
+    builder.Services.AddSwaggerGen(); // Habilita a geração do Swagger e Swagger UI
     builder.Services.AddMemoryCache(); // Irá adicionar o uso de cache ao Asp.Net Core
     builder.Services.AddResponseCompression(options =>
     {
@@ -105,7 +116,11 @@ void ConfigureMvc(WebApplicationBuilder builder)
 
 void ConfigureServices(WebApplicationBuilder builder) 
 {
-    builder.Services.AddDbContext<BlogDataContext>();
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<BlogDataContext>(options =>
+    {
+        options.UseSqlServer(connectionString);
+    });
     builder.Services.AddTransient<TokenService>(); // Sempre irá criar uma nova instância onde for pedido
     builder.Services.AddTransient<EmailService>();
 }

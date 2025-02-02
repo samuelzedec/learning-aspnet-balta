@@ -8,9 +8,13 @@ namespace WebBlog.Controllers;
 public class HomeController : ControllerBase
 {
     [HttpGet("")]
-    [ApiKey]
-    public IActionResult Get()
+    public IActionResult Get(
+        [FromServices] IConfiguration config)
     {
-        return Ok(); //health-check
+        var env = config.GetValue<string>("Env");
+        return Ok(new
+        {
+            Enviroment = env
+        }); //health-check
     }
 }
