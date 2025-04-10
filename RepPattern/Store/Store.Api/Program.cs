@@ -21,6 +21,7 @@ builder.Services.AddInfrasctruture();
 var app = builder.Build();
 
 app.MapGet("/", () => "Health Check!");
+
 app.MapGet("v1/products/{id:Guid}", async (
     ISender sender,
     Guid id,
