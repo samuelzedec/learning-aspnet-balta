@@ -1,5 +1,5 @@
 using System.Text.RegularExpressions;
-using Balta.Domain.Accounts.Exceptions;
+using Balta.Domain.Accounts.ValueObjects.Exceptions;
 using Balta.Domain.Shared.ValueObjects;
 
 namespace Balta.Domain.Accounts.ValueObjects;

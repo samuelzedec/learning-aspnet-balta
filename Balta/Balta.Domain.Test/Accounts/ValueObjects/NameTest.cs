@@ -1,4 +1,4 @@
-using Balta.Domain.Accounts.Exceptions;
+using Balta.Domain.Accounts.ValueObjects.Exceptions;
 using Balta.Domain.Accounts.ValueObjects;
 
 namespace Balta.Domain.Test.Accounts.ValueObjects;
