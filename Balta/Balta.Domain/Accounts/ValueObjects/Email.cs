@@ -68,4 +68,17 @@ public sealed partial record Email : ValueObject
     private static partial Regex EmailRegex();
 
     #endregion
+
+    #region Implict Operators
+
+    public static implicit operator string(Email email) => email.ToString();
+
+    #endregion
+
+    #region Overrides
+
+    public override string ToString()
+        => Address;
+
+    #endregion
 }

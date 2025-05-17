@@ -1,10 +1,12 @@
+using Balta.Domain.Accounts.Events;
 using Balta.Domain.Accounts.ValueObjects;
 using Balta.Domain.Shared.Abstractions;
+using Balta.Domain.Shared.Aggregate.Abstractions;
 using Balta.Domain.Shared.Entities;
 
 namespace Balta.Domain.Accounts.Entities;
 
-public sealed class Student : Entity
+public sealed class Student : Entity, IAggregateRoot
 {
     #region Constructors
 
@@ -37,14 +39,23 @@ public sealed class Student : Entity
         Name name,
         Email email,
         IDateTimeProvider dateTimeProvider)
-        => new(name, email, dateTimeProvider);
+    {
+        var student = new Student(name, email, dateTimeProvider);
+        student.RaiseEvent(new OnStudentCreatedEvent(student.Id, student.Name, student.Email));
+        return student;
+    }
 
 
-    public static Student Create(string firstName,
+    public static Student Create(
+        string firstName,
         string lastName,
         string email,
         IDateTimeProvider dateTimeProvider)
-        => new(firstName, lastName, email, dateTimeProvider);
+    {
+        var student = new Student(firstName, lastName, email, dateTimeProvider);
+        student.RaiseEvent(new OnStudentCreatedEvent(student.Id, student.Name, student.Email));
+        return student;
+    }
 
     #endregion
 

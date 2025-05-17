@@ -1,0 +1,10 @@
+<Project>
+    <PropertyGroup>
+        <ManagePackageVersionCentrally>true</ManagePackageVersionCentrally>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageVersion Include="MediatR.Contracts" Version="2.0.1"/>
+        
+    </ItemGroup>
+</Project>
